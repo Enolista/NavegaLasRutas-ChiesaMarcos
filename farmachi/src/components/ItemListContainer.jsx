@@ -1,64 +1,54 @@
-//import {getProducts} from '../mock/asyncService'
-import { useEffect, useState } from "react"
-import ItemList from "./ItemList"
-import { useParams } from 'react-router-dom'
-import { addDoc, collection, getDocs, query, where } from 'firebase/firestore'
-import { db } from '../service/firebase'
-const ItemListContainer = ({greeting}) => {
-  const [data, setData]= useState([])
-  const [loader, setLoader] =  useState(false)
-  const {categoryId}= useParams()
-  console.log(categoryId)
+import { useEffect, useState } from "react";
+import ItemList from "./ItemList";
+import { useParams } from 'react-router-dom';
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from '../service/firebase';
 
+const ItemListContainer = ({ greeting }) => {
+  const [data, setData] = useState([]);
+  const [loader, setLoader] = useState(false);
+  const { categoryId } = useParams();
 
-  useEffect(()=>{
-    setLoader(true)
-    //conectamos con nuestra coleccion
-    const productsCollection = categoryId ? query(collection(db, "productos"), where("category", "==", categoryId))  :collection(db, "productos")
-    //pedir los documentos
+  useEffect(() => {
+    setLoader(true);
+
+    const productsCollection = categoryId
+      ? query(collection(db, "productos"), where("category", "==", categoryId))
+      : collection(db, "productos");
+
     getDocs(productsCollection)
-    .then((res)=> {
-      //limpiamos los datos para poder utilizar
-      const list = res.docs.map((doc)=>{
-        return {
+      .then((res) => {
+        const list = res.docs.map((doc) => ({
           id: doc.id,
-          ...doc.data()
-        }
+          ...doc.data(),
+        }));
+        setData(list);
       })
-      setData(list)
-    })
-    .catch((error)=> console.log(error))
-    .finally(()=> setLoader(false))
-  },[categoryId])
-   
-    //  PROMESA
-    //  useEffect(()=>{
-    //   setLoader(true)
-    //   getProducts()
-    //   .then((res)=>{
-    //     if(categoryId){
-    //       //filtro
-    //       setData(res.filter((prod)=> prod.category === categoryId ))
-    //     }else{
-    //       setData(res)
-    //     }
-    //   })
-    //   .catch((error)=> console.log(error))
-    //   .finally(()=> setLoader(false))
-    // },[categoryId])
-   
-    return(
-        <div>
-          {/* <button onClick={subirData}>SUBIR DATA UNA SOLA VEZ</button> */}
-          {
-            loader ? <div className="spinner"></div>
-            :<div>
-            <h1>{greeting} {categoryId && <span style={{textTransform:'capitalize'}}>{categoryId}</span>}</h1>
-           <ItemList data={data}/>
-          </div>
-          }
-        </div>
-    )
-}
+      .catch((error) => console.log(error))
+      .finally(() => setLoader(false));
+  }, [categoryId]);
 
-export default ItemListContainer
+  return (
+    <div className="container my-5">
+      {loader ? (
+        <div className="d-flex justify-content-center align-items-center" style={{ height: '200px' }}>
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Cargando...</span>
+          </div>
+        </div>
+      ) : (
+        <>
+          <h1 className="text-center mb-4">
+            {greeting}{" "}
+            {categoryId && (
+              <span className="text-capitalize text-secondary"> {categoryId}</span>
+            )}
+          </h1>
+          <ItemList data={data} />
+        </>
+      )}
+    </div>
+  );
+};
+
+export default ItemListContainer;

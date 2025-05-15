@@ -1,44 +1,54 @@
-import React, {useContext, useState} from 'react'
-import ItemCount from './ItemCount'
-// se importa el contexto
-import { CartContext } from '../context/CartContext'
-import { Link } from 'react-router-dom'
+import React, { useContext, useState } from 'react';
+import ItemCount from './ItemCount';
+import { CartContext } from '../context/CartContext';
+import { Link } from 'react-router-dom';
 
-const ItemDetail = ({productDetail}) => {
-  //Siguiendo la actividad a raja tabla de coder
-  // const[quantity, setQuantity]= useState(0)
-  //propuesta de la profe
-  const [purchase, setPurchase]=useState(false)
- 
-  //uso el contexto con useContext y le paso el contexto a utilizar
-  const {addToCart}= useContext(CartContext)
+const ItemDetail = ({ productDetail }) => {
+  const [purchase, setPurchase] = useState(false);
+  const { addToCart } = useContext(CartContext);
 
+  const onAdd = (cantidad) => {
+    addToCart(productDetail, cantidad);
+    setPurchase(true);
+  };
 
-  const onAdd = (cantidad)=> {
-    addToCart(productDetail,cantidad)
-    //propuesta de la profe
-    setPurchase(true)
-    //Siguiendo la actividad a raja tabla de coder
-    // setQuantity(cantidad)
-  }
-// console.log(quantity)
   return (
-    <div>
-        <h2>Detalle de: {productDetail.name}</h2>
-        <img src={productDetail.img} alt={productDetail.name}/>
-        <p>{productDetail.description}</p>
-        <p>Precio: ${productDetail.price},00</p>
-        <p>Stock: {productDetail.stock}</p>
-        {/* Siguiendo la actividad a raja tabla de coder */}
-       {/* {quantity > 0 
-       ? <Link className='btn btn-dark' to='/cart'>Ir al carrito</Link> 
-       : <ItemCount stock={productDetail.stock} onAdd={onAdd} />} */}
-       {purchase 
-       ? <Link className='btn btn-dark' to='/cart'>Ir al carrito</Link> 
-       : <ItemCount stock={productDetail.stock} onAdd={onAdd} />
-       }
-    </div>
-  )
-}
+    <div className="container my-5">
+      <div className="card p-4 shadow">
+        <div className="row g-4 align-items-center">
+          <div className="col-md-5 text-center">
+            <img
+              src={productDetail.img}
+              alt={productDetail.name}
+              className="img-fluid rounded"
+              style={{ maxHeight: '300px', objectFit: 'contain' }}
+            />
+          </div>
+          <div className="col-md-7">
+            <h2 className="mb-3">{productDetail.name}</h2>
+            <p className="text-muted">{productDetail.description}</p>
+            <h4 className="text-primary">Precio: ${productDetail.price},00</h4>
+            <p>Stock disponible: {productDetail.stock}</p>
 
-export default ItemDetail
+            <div className="mt-4 d-flex gap-3">
+              {purchase ? (
+                <>
+                  <Link className="btn btn-success" to="/cart">
+                    ✅ Ir al carrito
+                  </Link>
+                  <Link className="btn btn-outline-primary" to="/">
+                    🛍️ Seguir comprando
+                  </Link>
+                </>
+              ) : (
+                <ItemCount stock={productDetail.stock} onAdd={onAdd} />
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ItemDetail;

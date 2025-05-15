@@ -56,6 +56,7 @@ const isInCart = (id) => {
     }
 
 //funcion de total a pagar(cartView//checkout)
+//(Me habia quedado como el traste...)
 const cartTotal = () => {
     return cart.reduce((acc, prod)=> acc += prod.price * prod.quantity, 0)
 }
