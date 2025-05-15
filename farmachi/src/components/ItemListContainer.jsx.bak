@@ -49,9 +49,8 @@ const ItemListContainer = ({greeting}) => {
    
     return(
         <div>
-          {/* <button onClick={subirData}>SUBIR DATA UNA SOLA VEZ</button> */}
           {
-            loader ? <div className="spinner"></div>
+            loader ? <div className="spinner"></div> 
             :<div>
             <h1>{greeting} {categoryId && <span style={{textTransform:'capitalize'}}>{categoryId}</span>}</h1>
            <ItemList data={data}/>
