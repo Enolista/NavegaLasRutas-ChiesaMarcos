@@ -6,7 +6,7 @@
 
 ## 🖼️ Vista previa de la aplicación
 
-![Captura de FarmaCHI](public/CapturaAppFarmachi.png "Captura de la app")
+![Captura de FarmaCHI](farmachi/public/CapturaAppFarmachi.png "Captura de la app")
 
 ## 📲 Dependencias / Librerias utilizadas:
 
