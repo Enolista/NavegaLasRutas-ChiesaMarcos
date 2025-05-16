@@ -51,6 +51,6 @@
 ## 💻 Recomendamos Hosteo en
 
 * Vercel
-* Para ver online el proyecto: [https://proyecto-final-chiesa-marcos.vercel.app/]()
+* Para ver online el proyecto: [Demo Online]([https://proyecto-final-chiesa-marcos-5rpeyngmt-enolistas-projects.vercel.app/](Demo Online) "Ver Demo online del proyecto")
 
-#### Desarrollado por el Dr. Chiche
+#### Desarrollado por el [Dr. Chiche](https://www.linkedin.com/in/mchiesa/ "Mi CV online")
