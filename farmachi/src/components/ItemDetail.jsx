@@ -1,16 +1,24 @@
-import React, { useContext, useState } from 'react';
-import ItemCount from './ItemCount';
-import { CartContext } from '../context/CartContext';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react'
+import ItemCount from './ItemCount'
+import { CartContext } from '../context/CartContext'
+import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 const ItemDetail = ({ productDetail }) => {
-  const [purchase, setPurchase] = useState(false);
-  const { addToCart } = useContext(CartContext);
+  const [purchase, setPurchase] = useState(false)
+  const { addToCart } = useContext(CartContext)
 
   const onAdd = (cantidad) => {
-    addToCart(productDetail, cantidad);
-    setPurchase(true);
-  };
+    addToCart(productDetail, cantidad)
+    setPurchase(true)
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: `Agregaste ${cantidad} ${productDetail.name} al carrito`,
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
 
   return (
     <div className="container my-5">
@@ -48,7 +56,7 @@ const ItemDetail = ({ productDetail }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ItemDetail;
+export default ItemDetail

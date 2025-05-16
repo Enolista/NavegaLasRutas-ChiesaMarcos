@@ -25,6 +25,15 @@
 * **[React Router]()**
 
   Librería de rutas para React, esencial para manejar navegación y rutas dinámicas (como `/category/:id` o `/item/:id`).
+* **[SweetAlert2]()**
+
+  Librería para mostrar alertas personalizadas, animadas y elegantes en JavaScript (y por supuesto, en React). Ideal para confirmaciones, errores, formularios emergentes, etc.
+* **[React Hot Toast](https://react-hot-toast.com/)**
+
+  Librería simple, rápida y hermosa para mostrar notificaciones tipo "toast" en apps React. Muy útil para mostrar confirmaciones, errores, alertas, etc.
+* **[React Hook Form](https://react-hook-form.com/)**
+
+  Librería liviana y performante para manejar formularios en React, con validaciones simples o avanzadas.
 
 ## 📝 Instalación:
 
@@ -42,6 +51,6 @@
 ## 💻 Recomendamos Hosteo en
 
 * Vercel
-* Para ver online el proyecto:
+* Para ver online el proyecto: [https://proyecto-final-chiesa-marcos.vercel.app/]()
 
 #### Desarrollado por el Dr. Chiche
